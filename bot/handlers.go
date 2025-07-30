@@ -59,11 +59,11 @@ func (h *BotHandler) handleAdd(update tgbotapi.Update) {
 		ID:       uuid.New().String(),
 		Text:     args,
 		Done:     false,
-		Date:     time.Now().AddDate(0, 0, 3).Format("2006-01-02"),
+		Date:     time.Now().Format("2006-01-02"),
 		Username: user.UserName,
-		Created:  time.Now().AddDate(0, 0, 3),
+		Created:  time.Now(),
 	}
-	fmt.Println(task.Created)
+
 	err := h.Firestore.AddTask(userID, task)
 	if err != nil {
 		h.reply(update.Message.Chat.ID, "❌ Failed to add task.")
