@@ -29,13 +29,17 @@ func Load() Config {
 		FirebaseProjectId: os.Getenv("FIREBASE_PROJECT_ID"),
 		CredentialsBase64: os.Getenv("GOOGLE_CREDENTIALS_BASE64"),
 	}
+	if cfg.TelegramToken == "" {
+		log.Fatal("❌ TELEGRAM_TOKEN not set")
+	}
+
+	if cfg.CredentialsBase64 == "" {
+		log.Fatal("❌ GOOGLE_CREDENTIALS_BASE64 not set")
+	}
 	filepath := WriteCredentialsToTempFile(cfg.CredentialsBase64)
 	fmt.Println(filepath)
 	cfg.CredentialsJSON = filepath
 
-	if cfg.TelegramToken == "" || cfg.CredentialsJSON == "" {
-		log.Fatal("❌ Missing required environment variables")
-	}
 	return cfg
 }
 
