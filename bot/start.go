@@ -21,7 +21,7 @@ func Start(cfg config.Config) {
 	log.Printf("🤖 Bot is running as @%s", bot.Self.UserName)
 
 	// Initialize Firestore
-	fs := firestore.NewService(cfg.CredentialsJSON)
+	fs := firestore.NewService(cfg.CredentialsJSON, cfg.FirebaseProjectId)
 
 	// Create handler
 	handler := &BotHandler{

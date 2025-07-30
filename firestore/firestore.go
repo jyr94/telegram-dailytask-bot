@@ -23,10 +23,10 @@ type FirestoreService struct {
 	ctx    context.Context
 }
 
-func NewService(credentialsFile string) *FirestoreService {
+func NewService(credentialsFile string, projectId string) *FirestoreService {
 	ctx := context.Background()
 
-	client, err := firestore.NewClient(ctx, "dailytaskbot-467403", option.WithCredentialsFile(credentialsFile), option.WithEndpoint("firestore.googleapis.com:443"))
+	client, err := firestore.NewClient(ctx, projectId, option.WithCredentialsFile(credentialsFile), option.WithEndpoint("firestore.googleapis.com:443"))
 	if err != nil {
 		log.Fatalf("❌ Failed to create Firestore client: %v", err)
 	}

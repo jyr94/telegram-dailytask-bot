@@ -9,9 +9,10 @@ import (
 )
 
 type Config struct {
-	TelegramToken   string
-	GoogleSheetID   string
-	CredentialsJSON string
+	TelegramToken     string
+	GoogleSheetID     string
+	CredentialsJSON   string
+	FirebaseProjectId string
 }
 
 func Load() Config {
@@ -20,8 +21,9 @@ func Load() Config {
 		log.Println("⚠️ No .env file found, using system environment variables.")
 	}
 	cfg := Config{
-		TelegramToken:   os.Getenv("TELEGRAM_TOKEN"),
-		CredentialsJSON: os.Getenv("GOOGLE_CREDENTIALS_FILE"),
+		TelegramToken:     os.Getenv("TELEGRAM_TOKEN"),
+		CredentialsJSON:   os.Getenv("GOOGLE_CREDENTIALS_FILE"),
+		FirebaseProjectId: os.Getenv("FIREBASE_PROJECT_ID"),
 	}
 	if cfg.TelegramToken == "" || cfg.CredentialsJSON == "" {
 		log.Fatal("❌ Missing required environment variables")
