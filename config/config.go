@@ -23,6 +23,7 @@ func Load() Config {
 	if err != nil {
 		log.Println("⚠️ No .env file found, using system environment variables.")
 	}
+	fmt.Println("DEBUG", os.Getenv("TELEGRAM_TOKEN"))
 	cfg := Config{
 		TelegramToken:     os.Getenv("TELEGRAM_TOKEN"),
 		CredentialsJSON:   os.Getenv("GOOGLE_CREDENTIALS_FILE"),
